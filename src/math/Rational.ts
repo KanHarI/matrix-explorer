@@ -34,14 +34,14 @@ export class Rational {
     return new Rational(this._numerator, this._denominator);
   }
 
-  neqEq(): Rational {
+  negEq(): Rational {
     this._numerator *= -1;
     return this;
   }
 
   static neg(r: Rational): Rational {
     const res = r.clone();
-    return res.neqEq();
+    return res.negEq();
   }
 
   invEq(): Rational {
@@ -72,13 +72,13 @@ export class Rational {
     return result.addEq(b);
   }
 
-  minusEq(other: Rational): Rational {
+  subEq(other: Rational): Rational {
     return this.addEq(Rational.neg(other));
   }
 
-  static minus(a: Rational, b: Rational): Rational {
+  static sub(a: Rational, b: Rational): Rational {
     const result = a.clone();
-    return result.minusEq(b);
+    return result.subEq(b);
   }
 
   mulEq(other: Rational): Rational {
@@ -100,6 +100,24 @@ export class Rational {
   static div(a: Rational, b: Rational): Rational {
     const result = a.clone();
     return result.divEq(b);
+  }
+
+  powEq(exponent: number): Rational {
+    if (!Number.isInteger(exponent)) {
+      throw new Error("Exponent must be an integer!");
+    }
+    if (exponent < 0) {
+      this.invEq();
+      exponent *= -1;
+    }
+    this._numerator = Math.pow(this._numerator, exponent);
+    this._denominator = Math.pow(this._denominator, exponent);
+    return this;
+  }
+
+  static pow(a: Rational, exponent: number): Rational {
+    const result = a.clone();
+    return result.powEq(exponent);
   }
 
   toFP(): number {
