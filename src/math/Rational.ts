@@ -131,4 +131,12 @@ export class Rational {
   get denominator(): number {
     return this._denominator;
   }
+
+  isZero(): boolean {
+    return this._numerator == 0;
+  }
+
+  equals(other: Rational): boolean {
+    return this._numerator == other._numerator && this._denominator == other._denominator;
+  }
 }

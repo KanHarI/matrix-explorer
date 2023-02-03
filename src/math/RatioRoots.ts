@@ -220,4 +220,12 @@ export class RatioRoots {
     }
     return res;
   }
+
+  isZero(): boolean {
+    return Object.keys(this._coefficients).length == 0;
+  }
+
+  equals(other: RatioRoots): boolean {
+    return RatioRoots.sub(this, other).isZero();
+  }
 }
