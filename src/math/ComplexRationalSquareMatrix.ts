@@ -57,18 +57,18 @@ export class ComplexRationalSquareMatrix {
     );
     let start_row = 0;
     while (
-      active_column < this._entries.length &&
-      start_row < this._entries.length
+      active_column < cloned_matrix._entries.length &&
+      start_row < cloned_matrix._entries.length
     ) {
       let pivot_row = start_row;
-      for (const row of this._entries.slice(start_row)) {
+      for (const row of cloned_matrix._entries.slice(start_row)) {
         if (!row[active_column].normSquared().isZero()) {
           break;
         }
         pivot_row++;
       }
       // If the column is all zero, skip it
-      if (pivot_row == this._entries.length) {
+      if (pivot_row == cloned_matrix._entries.length) {
         active_column++;
         continue;
       }

@@ -181,6 +181,7 @@ export function gcd(arr: Array<number>): number {
   const gcd_factorization = factorize(minimal_number);
   for (const _number of arr) {
     if (!Number.isInteger(_number) || _number < 1) {
+      console.trace("HERE");
       throw new Error(`Expected a positive integer for gcd! Got ${_number}`);
     }
     for (const prime_str of Object.keys(gcd_factorization)) {
