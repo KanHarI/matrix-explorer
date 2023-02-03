@@ -22,4 +22,27 @@ describe("Complex rational polynomial module tests", () => {
       ])
     );
   });
+
+  it("Complex rational polynomial multiplication", () => {
+    const a = new ComplexRationalPoly([
+      ComplexRational.fromInt(1),
+      ComplexRational.fromInt(2),
+      ComplexRational.fromInt(3),
+    ]);
+    const b = new ComplexRationalPoly([
+      ComplexRational.fromInt(4),
+      ComplexRational.fromInt(5),
+      ComplexRational.fromInt(6),
+    ]);
+    const c = ComplexRationalPoly.mul(a, b);
+    expect(c).toStrictEqual(
+      new ComplexRationalPoly([
+        ComplexRational.fromInt(4),
+        ComplexRational.fromInt(13),
+        ComplexRational.fromInt(28),
+        ComplexRational.fromInt(27),
+        ComplexRational.fromInt(18),
+      ])
+    );
+  });
 });
