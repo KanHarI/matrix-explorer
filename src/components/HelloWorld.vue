@@ -9,6 +9,8 @@
     </p>
   </div>
 
+  <MatrixInput order="3" />
+
   <p>
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
@@ -25,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MatrixInput from "./MatrixInput.vue";
 
 interface DataType {
   count: number;
@@ -32,6 +35,9 @@ interface DataType {
 
 export default defineComponent({
   name: "HelloWorld",
+  components: {
+    MatrixInput,
+  },
   props: {
     msg: {
       type: String,

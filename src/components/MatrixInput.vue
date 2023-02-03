@@ -1,44 +1,20 @@
 <template>
   <div class="matrix-input">
-    <div class="matrix-input__row">
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="matrix-input__row">
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-    </div>
-    <div class="matrix-input__row">
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
-      </div>
-      <div class="matrix-input__cell">
-        <input type="text" />
+    <div v-for="i of range(order)" :key="i" class="matrix-input__row">
+      <div v-for="j of range(order)" :key="j" class="matrix-input__cell">
+        <input
+          type="text"
+          @input="entries[i][j] = parseInt($event.target.value)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import {ComplexRational} from "../math/ComplexRational";
+import { defineComponent } from "vue";
+import { ComplexRational } from "../math/ComplexRational";
+import { range } from "lodash";
 
 interface DataType {
   entries: Array<Array<ComplexRational>>;
@@ -51,6 +27,11 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+  },
+  setup() {
+    return {
+      range,
+    };
   },
   data(): DataType {
     const entries: Array<Array<ComplexRational>> = [];

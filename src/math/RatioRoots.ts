@@ -196,8 +196,8 @@ export class RatioRoots {
       this.invEq();
       n = -n;
     }
-    let res = new RatioRoots({ 1: new Rational(1, 1) });
-    let base = this.clone();
+    const res = new RatioRoots({ 1: new Rational(1, 1) });
+    const base = this.clone();
     while (n > 0) {
       if (n % 2 == 1) {
         res.mulEq(base);
