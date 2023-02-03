@@ -16,4 +16,51 @@ describe("Rational square roots field tests", () => {
       3: new Rational(1, 1),
     });
   });
+
+  it("Check rational roots addition", () => {
+    const r1 = new RatioRoots({
+      1: new Rational(1, 2),
+      2: new Rational(1, 3),
+    });
+    const r2 = new RatioRoots({
+      1: new Rational(1, 3),
+      3: new Rational(1, 2),
+    });
+    const result = RatioRoots.add(r1, r2);
+    expect(result.coefficients).toStrictEqual({
+      1: new Rational(5, 6),
+      2: new Rational(1, 3),
+      3: new Rational(1, 2),
+    });
+  });
+
+  it("Check rational roots negation", () => {
+    const r1 = new RatioRoots({
+      1: new Rational(1, 2),
+      2: new Rational(1, 3),
+    });
+    const result = RatioRoots.neg(r1);
+    expect(result.coefficients).toStrictEqual({
+      1: new Rational(-1, 2),
+      2: new Rational(-1, 3),
+    });
+  });
+
+  it("Check rational roots multiplication", () => {
+    const r1 = new RatioRoots({
+      1: new Rational(1, 2),
+      2: new Rational(1, 3),
+    });
+    const r2 = new RatioRoots({
+      1: new Rational(1, 3),
+      3: new Rational(1, 2),
+    });
+    const result = RatioRoots.mul(r1, r2);
+    expect(result.coefficients).toStrictEqual({
+      1: new Rational(1, 6),
+      2: new Rational(1, 9),
+      3: new Rational(1, 4),
+      6: new Rational(1, 6),
+    });
+  });
 });
