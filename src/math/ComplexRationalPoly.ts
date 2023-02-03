@@ -123,10 +123,28 @@ export class ComplexRationalPoly {
     return this._coefficients;
   }
 
+  evaluate(z: ComplexRational): ComplexRational {
+    let result = ComplexRational.zero();
+    for (let i = 0; i <= this.degree(); i++) {
+      result.addEq(
+        ComplexRational.mul(this._coefficients[i], ComplexRational.pow(z, i))
+      );
+    }
+    return result;
+  }
+
   degree(): number {
     if (this._coefficients.length == 0) {
       return -Infinity;
     }
     return this._coefficients.length - 1;
+  }
+
+  static zero(): ComplexRationalPoly {
+    return new ComplexRationalPoly([]);
+  }
+
+  static one(): ComplexRationalPoly {
+    return new ComplexRationalPoly([ComplexRational.one()]);
   }
 }

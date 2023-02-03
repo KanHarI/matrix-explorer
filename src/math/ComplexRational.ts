@@ -111,6 +111,26 @@ export class ComplexRational {
     return this._imag.clone();
   }
 
+  powEq(n: number): ComplexRational {
+    if (n === 0) {
+      this._real = Rational.one();
+      this._imag = Rational.zero();
+      return this;
+    }
+    if (n === 1) {
+      return this;
+    }
+    const orig = this.clone();
+    for (let i = 1; i < n; i++) {
+      this.mulEq(orig);
+    }
+    return this;
+  }
+
+  static pow(z: ComplexRational, n: number): ComplexRational {
+    return z.clone().powEq(n);
+  }
+
   isZero(): boolean {
     return this._real.isZero() && this._imag.isZero();
   }

@@ -1,4 +1,6 @@
 import { ComplexRational } from "./ComplexRational";
+import { ComplexRationalPoly } from "./ComplexRationalPoly";
+import { ComplexRationalSquarePolyMatrix } from "./ComplexRationalSquarePolyMatrix";
 
 export class ComplexRationalSquareMatrix {
   private _entries: Array<Array<ComplexRational>>;
@@ -155,5 +157,57 @@ export class ComplexRationalSquareMatrix {
       sum.addEq(this._entries[i][i]);
     }
     return sum;
+  }
+
+  minor(row: number, column: number): ComplexRationalSquareMatrix {
+    const new_entries: Array<Array<ComplexRational>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      if (i == row) {
+        continue;
+      }
+      new_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        if (j == column) {
+          continue;
+        }
+        new_entries[new_entries.length - 1].push(this._entries[i][j]);
+      }
+    }
+    return new ComplexRationalSquareMatrix(new_entries);
+  }
+
+  determinant(): ComplexRational {
+    if (this._entries.length == 1) {
+      return this._entries[0][0];
+    }
+    let sum = ComplexRational.zero();
+    for (let i = 0; i < this._entries.length; i++) {
+      const entry = this._entries[0][i].clone();
+      if (i % 2 == 1) {
+        entry.negEq();
+      }
+      sum.addEq(entry.mulEq(this.minor(0, i).determinant()));
+    }
+    return sum;
+  }
+
+  charPoly(): ComplexRationalPoly {
+    const poly_matrix_entries: Array<Array<ComplexRationalPoly>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      poly_matrix_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        const entry = this._entries[i][j].clone();
+        if (i == j) {
+          poly_matrix_entries[i].push(
+            new ComplexRationalPoly([entry, ComplexRational.one()])
+          );
+        } else {
+          poly_matrix_entries[i].push(new ComplexRationalPoly([entry]));
+        }
+      }
+    }
+    return new ComplexRationalSquarePolyMatrix(
+      poly_matrix_entries
+    ).determinant();
   }
 }
