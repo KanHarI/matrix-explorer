@@ -205,6 +205,7 @@ export class RatioRoots {
     const res = r.clone();
     return res.powEq(n);
   }
+
   get coefficients(): Record<number, Rational> {
     const res: Record<number, Rational> = {};
     for (const key of Object.keys(
