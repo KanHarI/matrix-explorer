@@ -152,13 +152,18 @@ export class RatioRoots {
       factors.push(new_factor);
       this.mulEq(new_factor);
     }
-    factors.push(this.clone());
-    this.powEq(2);
-    if (
-      this._coefficients[1] === undefined ||
-      Object.keys(this._coefficients).length > 1
-    ) {
-      throw new Error("Unknown inversion error!");
+    const r = Math.max(
+      ...Object.keys(this._coefficients).map((x) => parseInt(x))
+    );
+    if (r > 1) {
+      factors.push(this.clone());
+      this.powEq(2);
+      if (
+        this._coefficients[1] === undefined ||
+        Object.keys(this._coefficients).length > 1
+      ) {
+        throw new Error("Unknown inversion error!");
+      }
     }
     factors.push(new RatioRoots({ 1: Rational.inv(this._coefficients[1]) }));
     const acc = factors[0];
