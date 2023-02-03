@@ -16,7 +16,7 @@ export class Rational {
     this.reduce();
   }
 
-  reduce(): void {
+  private reduce(): void {
     if (this._denominator < 0) {
       this._numerator *= -1;
       this._denominator *= -1;
@@ -104,5 +104,13 @@ export class Rational {
 
   toFP(): number {
     return this._numerator / this._denominator;
+  }
+
+  get numerator(): number {
+    return this._numerator;
+  }
+
+  get denominator(): number {
+    return this._denominator;
   }
 }

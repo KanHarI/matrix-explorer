@@ -15,7 +15,7 @@ export class RatioRoots {
     this.reduce();
   }
 
-  reduce(): void {
+  private reduce(): void {
     let key = Math.max(
       ...Object.keys(this._coefficients).map((x) => parseInt(x))
     );
