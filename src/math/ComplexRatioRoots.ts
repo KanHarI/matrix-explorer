@@ -1,5 +1,5 @@
 import { RatioRoots } from "./RatioRoots";
-import {Rational} from "./Rational";
+import { Rational } from "./Rational";
 
 export class ComplexRatioRoots {
   private _real: RatioRoots;
