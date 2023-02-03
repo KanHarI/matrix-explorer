@@ -1,5 +1,4 @@
 import { ComplexRational } from "./ComplexRational";
-import { Rational } from "./Rational";
 
 export class ComplexRationalSquareMatrix {
   private _entries: Array<Array<ComplexRational>>;
@@ -133,5 +132,28 @@ export class ComplexRationalSquareMatrix {
     b: ComplexRationalSquareMatrix
   ): ComplexRationalSquareMatrix {
     return a.clone().matMulEq(b);
+  }
+
+  static matMulVec(
+    a: ComplexRationalSquareMatrix,
+    b: Array<ComplexRational>
+  ): Array<ComplexRational> {
+    const new_entries: Array<ComplexRational> = [];
+    for (let i = 0; i < a._entries.length; i++) {
+      let sum = ComplexRational.zero();
+      for (let k = 0; k < a._entries.length; k++) {
+        sum.addEq(a._entries[i][k].clone().mulEq(b[k]));
+      }
+      new_entries.push(sum);
+    }
+    return new_entries;
+  }
+
+  trace(): ComplexRational {
+    let sum = ComplexRational.zero();
+    for (let i = 0; i < this._entries.length; i++) {
+      sum.addEq(this._entries[i][i]);
+    }
+    return sum;
   }
 }

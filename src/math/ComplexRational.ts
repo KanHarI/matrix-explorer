@@ -111,6 +111,10 @@ export class ComplexRational {
     return this._imag.clone();
   }
 
+  isZero(): boolean {
+    return this._real.isZero() && this._imag.isZero();
+  }
+
   static zero(): ComplexRational {
     return new ComplexRational(Rational.zero(), Rational.zero());
   }
