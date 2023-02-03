@@ -137,6 +137,9 @@ export class Rational {
   }
 
   equals(other: Rational): boolean {
-    return this._numerator == other._numerator && this._denominator == other._denominator;
+    return (
+      this._numerator == other._numerator &&
+      this._denominator == other._denominator
+    );
   }
 }
