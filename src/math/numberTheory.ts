@@ -1,4 +1,4 @@
-export const MAX_NUMBER_THEORETIC_INPUT = 1_000_000_000;
+export const MAX_NUMBER_THEORETIC_INPUT = 1_000_000_000_000_000;
 let GLOBAL_PRIMES: Set<number> = new Set<number>([2]);
 let PRIMES_CHECKED_UP_TO = 2;
 

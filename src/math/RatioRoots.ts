@@ -100,12 +100,12 @@ export class RatioRoots {
 
   mulEq(other: RatioRoots): RatioRoots {
     const new_coefficients: Record<number, Rational> = {};
-    for (const key1 of Object.keys(
-      this._coefficients
-    ) as unknown as Array<number>) {
-      for (const key2 of Object.keys(
-        other._coefficients
-      ) as unknown as Array<number>) {
+    for (const key1 of Object.keys(this._coefficients).map((x) =>
+      parseInt(x)
+    )) {
+      for (const key2 of Object.keys(other._coefficients).map((x) =>
+        parseInt(x)
+      )) {
         const key = key1 * key2;
         if (new_coefficients[key] === undefined) {
           new_coefficients[key] = new Rational(0, 1);
@@ -160,7 +160,7 @@ export class RatioRoots {
     ) {
       throw new Error("Unknown inversion error!");
     }
-    factors.push(new RatioRoots({ 1: Rational.inv(this._coefficients[0]) }));
+    factors.push(new RatioRoots({ 1: Rational.inv(this._coefficients[1]) }));
     const acc = factors[0];
     for (let i = 1; i < factors.length; i++) {
       acc.mulEq(factors[i]);

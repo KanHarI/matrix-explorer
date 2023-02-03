@@ -63,4 +63,31 @@ describe("Rational square roots field tests", () => {
       6: new Rational(1, 6),
     });
   });
+
+  it("Check rational roots inversion1", () => {
+    const r = new RatioRoots({
+      1: new Rational(1, 1),
+      2: new Rational(1, 1),
+    });
+    const result = RatioRoots.inv(r);
+    expect(result.coefficients).toStrictEqual({
+      1: new Rational(-1, 1),
+      2: new Rational(1, 1),
+    });
+  });
+
+  it("Check rational roots inversion2", () => {
+    const r = new RatioRoots({
+      1: new Rational(1, 1),
+      2: new Rational(1, 3),
+      3: new Rational(1, 2),
+    });
+    const result = RatioRoots.inv(r);
+    expect(result.coefficients).toStrictEqual({
+      1: new Rational(-36, 863),
+      2: new Rational(660, 863),
+      3: new Rational(306, 863),
+      6: new Rational(-432, 863),
+    });
+  });
 });
