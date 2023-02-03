@@ -3,5 +3,12 @@ import { Rational } from "../../src/math/Rational";
 import { ComplexRational } from "../../src/math/ComplexRational";
 
 describe("Complex rational square matrix module tests", () => {
-  it("Complex rational square matrix elimination1", () => {});
+  it("Complex rational square matrix elimination1", () => {
+    const matrix = new ComplexRationalSquareMatrix([
+      [ComplexRational.fromInt(3), ComplexRational.one()],
+      [ComplexRational.zero(), ComplexRational.fromInt(2)],
+    ]);
+    const [eliminated_matrix, transformation_matrix, rank] = matrix.gaussian_elimination();
+    const a = 1;
+  });
 });

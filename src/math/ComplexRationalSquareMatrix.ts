@@ -20,7 +20,7 @@ export class ComplexRationalSquareMatrix {
       entries.push([]);
       for (let j = 0; j < n; j++) {
         entries[i].push(
-          new ComplexRational(new Rational(0, 1), new Rational(0, 1))
+          ComplexRational.zero()
         );
       }
     }
@@ -34,11 +34,11 @@ export class ComplexRationalSquareMatrix {
       for (let j = 0; j < n; j++) {
         if (i == j) {
           entries[i].push(
-            new ComplexRational(new Rational(1, 1), new Rational(0, 1))
+            ComplexRational.one()
           );
         } else {
           entries[i].push(
-            new ComplexRational(new Rational(0, 1), new Rational(0, 1))
+            ComplexRational.zero()
           );
         }
       }
