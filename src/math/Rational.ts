@@ -65,7 +65,7 @@ export class Rational {
     this.reduce();
   }
 
-  add(a: Rational, b: Rational): Rational {
+  static add(a: Rational, b: Rational): Rational {
     const result = a.clone();
     result.addEq(b);
     return result;
@@ -101,5 +101,9 @@ export class Rational {
     const result = a.clone();
     result.divEq(b);
     return result;
+  }
+
+  toFP(): number {
+    return this._numerator / this._denominator;
   }
 }
