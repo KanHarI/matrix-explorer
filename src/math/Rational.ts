@@ -34,21 +34,22 @@ export class Rational {
     return new Rational(this._numerator, this._denominator);
   }
 
-  neqEq(): void {
+  neqEq(): Rational {
     this._numerator *= -1;
+    return this;
   }
 
   static neg(r: Rational): Rational {
     const res = r.clone();
-    res.neqEq();
-    return res;
+    return res.neqEq();
   }
 
-  invEq(): void {
+  invEq(): Rational {
     const temp = this._numerator;
     this._numerator = this._denominator;
     this._denominator = temp;
     this.reduce();
+    return this;
   }
 
   static inv(r: Rational): Rational {
@@ -57,50 +58,48 @@ export class Rational {
     return res;
   }
 
-  addEq(other: Rational): void {
+  addEq(other: Rational): Rational {
     this._numerator =
       this._numerator * other._denominator +
       other._numerator * this._denominator;
     this._denominator *= other._denominator;
     this.reduce();
+    return this;
   }
 
   static add(a: Rational, b: Rational): Rational {
     const result = a.clone();
-    result.addEq(b);
-    return result;
+    return result.addEq(b);
   }
 
-  minusEq(other: Rational): void {
-    this.addEq(Rational.neg(other));
+  minusEq(other: Rational): Rational {
+    return this.addEq(Rational.neg(other));
   }
 
   static minus(a: Rational, b: Rational): Rational {
     const result = a.clone();
-    result.minusEq(b);
-    return result;
+    return result.minusEq(b);
   }
 
-  mulEq(other: Rational): void {
+  mulEq(other: Rational): Rational {
     this._numerator *= other._numerator;
     this._denominator *= other._denominator;
     this.reduce();
+    return this;
   }
 
   static mul(a: Rational, b: Rational): Rational {
     const result = a.clone();
-    result.mulEq(b);
-    return result;
+    return result.mulEq(b);
   }
 
-  divEq(other: Rational): void {
-    this.mulEq(Rational.inv(other));
+  divEq(other: Rational): Rational {
+    return this.mulEq(Rational.inv(other));
   }
 
   static div(a: Rational, b: Rational): Rational {
     const result = a.clone();
-    result.divEq(b);
-    return result;
+    return result.divEq(b);
   }
 
   toFP(): number {
