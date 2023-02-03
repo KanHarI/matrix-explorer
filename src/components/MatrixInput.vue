@@ -4,7 +4,8 @@
       <div v-for="j of range(order)" :key="j" class="matrix-input__cell">
         <input
           type="text"
-          @input="entries[i][j] = parseInt($event.target.value)"
+          :placeholder="entries[i][j]"
+          @input="update_entry(i, j, $event.target.value)"
         />
       </div>
     </div>
@@ -17,7 +18,7 @@ import { ComplexRational } from "../math/ComplexRational";
 import { range } from "lodash";
 
 interface DataType {
-  entries: Array<Array<ComplexRational>>;
+  entries: Array<Array<number>>;
 }
 
 export default defineComponent({
@@ -34,20 +35,32 @@ export default defineComponent({
     };
   },
   data(): DataType {
-    const entries: Array<Array<ComplexRational>> = [];
+    const entries: Array<Array<number>> = [];
     for (let i = 0; i < this.order; i++) {
       entries.push([]);
       for (let j = 0; j < this.order; j++) {
         if (i === j) {
-          entries[i].push(ComplexRational.one());
+          entries[i].push(1);
         } else {
-          entries[i].push(ComplexRational.zero());
+          entries[i].push(0);
         }
       }
     }
     return {
       entries,
     };
+  },
+  methods: {
+    update_entry(i: number, j: number, value: string) {
+      if (value === "") {
+        this.entries[i][j] = i === j ? 1 : 0;
+      } else {
+        this.entries[i][j] = Number(value);
+        if (isNaN(this.entries[i][j])) {
+          this.entries[i][j] = i === j ? 1 : 0;
+        }
+      }
+    },
   },
 });
 </script>

@@ -9,7 +9,7 @@
     </p>
   </div>
 
-  <MatrixInput order="3" />
+  <MatrixInput order="2" />
 
   <p>
     Check out
