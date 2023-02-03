@@ -1,4 +1,4 @@
-import {gcd} from "./numberTheory";
+import { gcd } from "./numberTheory";
 
 export class Rational {
   private _numerator: number;
@@ -58,7 +58,9 @@ export class Rational {
   }
 
   addEq(other: Rational): void {
-    this._numerator = this._numerator * other._denominator + other._numerator * this._denominator;
+    this._numerator =
+      this._numerator * other._denominator +
+      other._numerator * this._denominator;
     this._denominator *= other._denominator;
     this.reduce();
   }

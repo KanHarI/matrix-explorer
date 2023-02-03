@@ -23,27 +23,27 @@
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<script lang="ts" scoped>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 interface DataType {
   count: number;
 }
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data(): DataType {
     return {
-      count: 0
-    }
-  }
-})
+      count: 0,
+    };
+  },
+});
 </script>
 
 <style scoped>

@@ -17,7 +17,9 @@ export function verify_number_theoretic_input(n: number) {
     n < 0 ||
     n > MAX_NUMBER_THEORETIC_INPUT
   ) {
-    throw new Error(`Expected a positive integer under 1 billion for number theoretic functions! Got ${n}`);
+    throw new Error(
+      `Expected a positive integer under 1 billion for number theoretic functions! Got ${n}`
+    );
   }
 }
 
@@ -126,7 +128,9 @@ export function _defactorize(factors: Record<number, number>): number {
   for (const prime_str of Object.keys(factors)) {
     const prime = Number(prime_str);
     if (!Number.isInteger(prime) || prime < 2) {
-      throw new Error(`Expected a positive integer greater than 1 for prime factors! Got ${prime}`);
+      throw new Error(
+        `Expected a positive integer greater than 1 for prime factors! Got ${prime}`
+      );
     }
     const power = factors[prime];
     result *= prime ** power;

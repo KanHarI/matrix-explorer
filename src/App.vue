@@ -11,17 +11,16 @@
 </template>
 
 <script lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import {defineComponent} from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-})
+    HelloWorld,
+  },
+});
 </script>
-
 
 <style scoped>
 .logo {
