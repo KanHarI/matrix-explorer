@@ -174,4 +174,16 @@ export class Rational {
   abs(): Rational {
     return new Rational(Math.abs(this._numerator), this._denominator);
   }
+
+  static zero(): Rational {
+    return new Rational(0, 1);
+  }
+
+  static one(): Rational {
+    return new Rational(1, 1);
+  }
+
+  static fromInt(n: number): Rational {
+    return new Rational(n, 1);
+  }
 }

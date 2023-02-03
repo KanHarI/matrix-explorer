@@ -1,4 +1,5 @@
 import { RatioRoots } from "./RatioRoots";
+import {Rational} from "./Rational";
 
 export class ComplexRatioRoots {
   private _real: RatioRoots;
@@ -106,5 +107,21 @@ export class ComplexRatioRoots {
 
   get imag(): RatioRoots {
     return this._imag.clone();
+  }
+
+  static zero(): ComplexRatioRoots {
+    return new ComplexRatioRoots(RatioRoots.zero(), RatioRoots.zero());
+  }
+
+  static one(): ComplexRatioRoots {
+    return new ComplexRatioRoots(RatioRoots.one(), RatioRoots.zero());
+  }
+
+  static fromRational(r: Rational) {
+    return new ComplexRatioRoots(RatioRoots.fromRational(r), RatioRoots.zero());
+  }
+
+  static fromRatioRoots(r: RatioRoots) {
+    return new ComplexRatioRoots(r.clone(), RatioRoots.zero());
   }
 }

@@ -239,4 +239,20 @@ export class RatioRoots {
     }
     return res;
   }
+
+  static zero(): RatioRoots {
+    return new RatioRoots({});
+  }
+
+  static one(): RatioRoots {
+    return new RatioRoots({ 1: Rational.one() });
+  }
+
+  static fromInt(n: number): RatioRoots {
+    return new RatioRoots({ 1: Rational.fromInt(n) });
+  }
+
+  static fromRational(r: Rational): RatioRoots {
+    return new RatioRoots({ 1: r.clone() });
+  }
 }

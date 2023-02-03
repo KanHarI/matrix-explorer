@@ -110,4 +110,20 @@ export class ComplexRational {
   get imag(): Rational {
     return this._imag.clone();
   }
+
+  static zero(): ComplexRational {
+    return new ComplexRational(Rational.zero(), Rational.zero());
+  }
+
+  static one(): ComplexRational {
+    return new ComplexRational(Rational.one(), Rational.zero());
+  }
+
+  static fromInt(n: number): ComplexRational {
+    return new ComplexRational(Rational.fromInt(n), Rational.zero());
+  }
+
+  static fromRational(r: Rational): ComplexRational {
+    return new ComplexRational(r.clone(), Rational.zero());
+  }
 }
