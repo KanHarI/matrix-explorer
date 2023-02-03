@@ -51,8 +51,10 @@ export class ComplexRationalSquareMatrix {
    */
   gaussian_elimination(): [
     ComplexRationalSquareMatrix,
-    ComplexRationalSquareMatrix
+    ComplexRationalSquareMatrix,
+    number
   ] {
+    let rank = 0;
     const cloned_matrix = this.clone();
     let active_column = 0;
     const transformation_matrix = ComplexRationalSquareMatrix.identity(
@@ -109,9 +111,10 @@ export class ComplexRationalSquareMatrix {
           );
         }
       }
+      rank++;
       start_row++;
       active_column++;
     }
-    return [cloned_matrix, transformation_matrix];
+    return [cloned_matrix, transformation_matrix, rank];
   }
 }
