@@ -3223,6 +3223,11 @@ vue-eslint-parser@^9.0.0, vue-eslint-parser@^9.0.1:
     lodash "^4.17.21"
     semver "^7.3.6"
 
+vue-mathjax-next@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vue-mathjax-next/-/vue-mathjax-next-0.0.4.tgz#795ff0d423fe4a2bbe12d87e2e6e534981ff12b1"
+  integrity sha512-8M+dUNc3j5IhC/gLVxqGoT7QjgJU8dMTjrCpC5qVwTcKvp2Iyxyulltv45UXWCm9UPC28viplP964Y0LZYiGMQ==
+
 vue-template-compiler@^2.7.14:
   version "2.7.14"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz#4545b7dfb88090744c1577ae5ac3f964e61634b1"

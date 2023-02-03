@@ -142,4 +142,36 @@ export class Rational {
       this._denominator == other._denominator
     );
   }
+
+  greaterThan(other: Rational): boolean {
+    return (
+      this._numerator * other._denominator >
+      other._numerator * this._denominator
+    );
+  }
+
+  greaterThanOrEqual(other: Rational): boolean {
+    return (
+      this._numerator * other._denominator >=
+      other._numerator * this._denominator
+    );
+  }
+
+  lessThan(other: Rational): boolean {
+    return (
+      this._numerator * other._denominator <
+      other._numerator * this._denominator
+    );
+  }
+
+  lessThanOrEqual(other: Rational): boolean {
+    return (
+      this._numerator * other._denominator <=
+      other._numerator * this._denominator
+    );
+  }
+
+  abs(): Rational {
+    return new Rational(Math.abs(this._numerator), this._denominator);
+  }
 }

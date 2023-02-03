@@ -231,4 +231,12 @@ export class RatioRoots {
   equals(other: RatioRoots): boolean {
     return RatioRoots.sub(this, other).isZero();
   }
+
+  toFP(): number {
+    let res = 0;
+    for (const key of Object.keys(this._coefficients).map((x) => parseInt(x))) {
+      res += this._coefficients[key].toFP() * key === 1 ? 1 : Math.sqrt(key);
+    }
+    return res;
+  }
 }
