@@ -124,4 +124,8 @@ export class ComplexRatioRoots {
   static fromRatioRoots(r: RatioRoots) {
     return new ComplexRatioRoots(r.clone(), RatioRoots.zero());
   }
+
+  isZero(): boolean {
+    return this._real.isZero() && this._imag.isZero();
+  }
 }

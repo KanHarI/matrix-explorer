@@ -85,8 +85,6 @@ export class ComplexRationalSquareMatrix {
         cloned_matrix._entries[start_row][active_column].clone();
       for (let i = 0; i < cloned_matrix._entries.length; i++) {
         cloned_matrix._entries[start_row][i].divEq(pivot_entry);
-      }
-      for (let i = 0; i < transformation_matrix._entries.length; i++) {
         transformation_matrix._entries[start_row][i].divEq(pivot_entry);
       }
       // Make the other entries in the column 0
@@ -99,8 +97,6 @@ export class ComplexRationalSquareMatrix {
           cloned_matrix._entries[i][j].subEq(
             cloned_matrix._entries[start_row][j].clone().mulEq(entry)
           );
-        }
-        for (let j = 0; j < transformation_matrix._entries.length; j++) {
           transformation_matrix._entries[i][j].subEq(
             transformation_matrix._entries[start_row][j].clone().mulEq(entry)
           );
