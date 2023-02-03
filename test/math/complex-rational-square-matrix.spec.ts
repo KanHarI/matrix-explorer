@@ -3,7 +3,7 @@ import { Rational } from "../../src/math/Rational";
 import { ComplexRational } from "../../src/math/ComplexRational";
 
 describe("Complex rational square matrix module tests", () => {
-  it("Complex rational square matrix elimination1", () => {
+  it("Complex rational square matrix elimination invertible", () => {
     const matrix = new ComplexRationalSquareMatrix([
       [ComplexRational.fromInt(3), ComplexRational.one()],
       [ComplexRational.zero(), ComplexRational.fromInt(2)],
@@ -25,5 +25,9 @@ describe("Complex rational square matrix module tests", () => {
         ],
       ])
     );
+    expect(rank).toBe(2);
+    expect(
+      ComplexRationalSquareMatrix.matMul(matrix, transformation_matrix)
+    ).toStrictEqual(ComplexRationalSquareMatrix.identity(2));
   });
 });

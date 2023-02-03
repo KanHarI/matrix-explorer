@@ -111,4 +111,27 @@ export class ComplexRationalSquareMatrix {
     }
     return [cloned_matrix, transformation_matrix, rank];
   }
+
+  matMulEq(other: ComplexRationalSquareMatrix): ComplexRationalSquareMatrix {
+    const new_entries: Array<Array<ComplexRational>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      new_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        let sum = ComplexRational.zero();
+        for (let k = 0; k < this._entries.length; k++) {
+          sum.addEq(this._entries[i][k].clone().mulEq(other._entries[k][j]));
+        }
+        new_entries[i].push(sum);
+      }
+    }
+    this._entries = new_entries;
+    return this;
+  }
+
+  static matMul(
+    a: ComplexRationalSquareMatrix,
+    b: ComplexRationalSquareMatrix
+  ): ComplexRationalSquareMatrix {
+    return a.clone().matMulEq(b);
+  }
 }
