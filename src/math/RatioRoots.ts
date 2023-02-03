@@ -11,7 +11,10 @@ export class RatioRoots {
   private _coefficients: Record<number, Rational>;
 
   constructor(coefficients: Record<number, Rational>) {
-    this._coefficients = coefficients;
+    this._coefficients = {};
+    for (const key of Object.keys(coefficients) as unknown as Array<number>) {
+      this._coefficients[key] = coefficients[key].clone();
+    }
     this.reduce();
   }
 

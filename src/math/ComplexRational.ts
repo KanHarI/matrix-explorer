@@ -1,4 +1,5 @@
 import { Rational } from "./Rational";
+import { RatioRoots } from "./RatioRoots";
 
 export class ComplexRational {
   private _real: Rational;
@@ -27,6 +28,14 @@ export class ComplexRational {
       Rational.mul(this._real, this._real),
       Rational.mul(this._imag, this._imag)
     );
+  }
+
+  norm(): RatioRoots {
+    const coefficients: Record<string, Rational> = {};
+    const norm_squared = this.normSquared();
+    coefficients[norm_squared.denominator * norm_squared.numerator] =
+      new Rational(norm_squared.denominator, 1);
+    return new RatioRoots(coefficients);
   }
 
   negEq(): ComplexRational {

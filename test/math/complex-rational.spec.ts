@@ -1,5 +1,6 @@
 import { ComplexRational } from "../../src/math/ComplexRational";
 import { Rational } from "../../src/math/Rational";
+import { RatioRoots } from "../../src/math/RatioRoots";
 
 describe("Complex rational module tests", () => {
   it("Complex rational addition", () => {
@@ -36,5 +37,11 @@ describe("Complex rational module tests", () => {
     expect(c).toStrictEqual(
       new ComplexRational(new Rational(230, 123), new Rational(-20, 123))
     );
+  });
+
+  it("Complex rational norm", () => {
+    const a = new ComplexRational(new Rational(1, 1), new Rational(1, 1));
+    const norm = a.norm();
+    expect(norm).toStrictEqual(new RatioRoots({ 2: new Rational(1, 1) }));
   });
 });
