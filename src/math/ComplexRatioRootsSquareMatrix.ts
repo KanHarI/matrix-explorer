@@ -1,19 +1,19 @@
 import { ComplexRatioRoots } from "./ComplexRatioRoots";
 
-export class ComplexRatioRootSquareMatrix {
+export class ComplexRatioRootsSquareMatrix {
   private _entries: Array<Array<ComplexRatioRoots>>;
 
   constructor(entries: Array<Array<ComplexRatioRoots>>) {
     this._entries = entries.map((row) => row.map((entry) => entry.clone()));
   }
 
-  clone(): ComplexRatioRootSquareMatrix {
-    return new ComplexRatioRootSquareMatrix(
+  clone(): ComplexRatioRootsSquareMatrix {
+    return new ComplexRatioRootsSquareMatrix(
       this._entries.map((row) => row.map((entry) => entry.clone()))
     );
   }
 
-  static zero(size: number): ComplexRatioRootSquareMatrix {
+  static zero(size: number): ComplexRatioRootsSquareMatrix {
     const entries: Array<Array<ComplexRatioRoots>> = [];
     for (let i = 0; i < size; i++) {
       entries.push([]);
@@ -21,10 +21,10 @@ export class ComplexRatioRootSquareMatrix {
         entries[i].push(ComplexRatioRoots.zero());
       }
     }
-    return new ComplexRatioRootSquareMatrix(entries);
+    return new ComplexRatioRootsSquareMatrix(entries);
   }
 
-  static identity(size: number): ComplexRatioRootSquareMatrix {
+  static identity(size: number): ComplexRatioRootsSquareMatrix {
     const entries: Array<Array<ComplexRatioRoots>> = [];
     for (let i = 0; i < size; i++) {
       entries.push([]);
@@ -33,18 +33,18 @@ export class ComplexRatioRootSquareMatrix {
       }
       entries[i][i] = ComplexRatioRoots.one();
     }
-    return new ComplexRatioRootSquareMatrix(entries);
+    return new ComplexRatioRootsSquareMatrix(entries);
   }
 
   gaussianElimination(): [
-    ComplexRatioRootSquareMatrix,
-    ComplexRatioRootSquareMatrix,
+    ComplexRatioRootsSquareMatrix,
+    ComplexRatioRootsSquareMatrix,
     number
   ] {
     let rank = 0;
     const cloned_matrix = this.clone();
     let active_column = 0;
-    const transformation_matrix = ComplexRatioRootSquareMatrix.identity(
+    const transformation_matrix = ComplexRatioRootsSquareMatrix.identity(
       this._entries.length
     );
     let start_row = 0;
@@ -100,7 +100,9 @@ export class ComplexRatioRootSquareMatrix {
     return [cloned_matrix, transformation_matrix, rank];
   }
 
-  matMulEq(matrix: ComplexRatioRootSquareMatrix): ComplexRatioRootSquareMatrix {
+  matMulEq(
+    matrix: ComplexRatioRootsSquareMatrix
+  ): ComplexRatioRootsSquareMatrix {
     const entries: Array<Array<ComplexRatioRoots>> = [];
     for (let i = 0; i < this._entries.length; i++) {
       entries.push([]);
@@ -116,14 +118,14 @@ export class ComplexRatioRootSquareMatrix {
   }
 
   static matMul(
-    a: ComplexRatioRootSquareMatrix,
-    b: ComplexRatioRootSquareMatrix
-  ): ComplexRatioRootSquareMatrix {
+    a: ComplexRatioRootsSquareMatrix,
+    b: ComplexRatioRootsSquareMatrix
+  ): ComplexRatioRootsSquareMatrix {
     return a.clone().matMulEq(b);
   }
 
   static matMulVec(
-    a: ComplexRatioRootSquareMatrix,
+    a: ComplexRatioRootsSquareMatrix,
     b: Array<ComplexRatioRoots>
   ): Array<ComplexRatioRoots> {
     const entries: Array<ComplexRatioRoots> = [];
@@ -144,7 +146,7 @@ export class ComplexRatioRootSquareMatrix {
     return trace;
   }
 
-  minor(row: number, column: number): ComplexRatioRootSquareMatrix {
+  minor(row: number, column: number): ComplexRatioRootsSquareMatrix {
     const entries: Array<Array<ComplexRatioRoots>> = [];
     for (let i = 0; i < this._entries.length; i++) {
       if (i == row) {
@@ -158,7 +160,7 @@ export class ComplexRatioRootSquareMatrix {
         entries[entries.length - 1].push(this._entries[i][j].clone());
       }
     }
-    return new ComplexRatioRootSquareMatrix(entries);
+    return new ComplexRatioRootsSquareMatrix(entries);
   }
 
   determinant(): ComplexRatioRoots {

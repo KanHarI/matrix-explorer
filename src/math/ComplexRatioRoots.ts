@@ -1,5 +1,6 @@
 import { RatioRoots } from "./RatioRoots";
 import { Rational } from "./Rational";
+import { ComplexRational } from "./ComplexRational";
 
 export class ComplexRatioRoots {
   private _real: RatioRoots;
@@ -123,6 +124,13 @@ export class ComplexRatioRoots {
 
   static fromRatioRoots(r: RatioRoots) {
     return new ComplexRatioRoots(r.clone(), RatioRoots.zero());
+  }
+
+  static fromComplexRational(r: ComplexRational): ComplexRatioRoots {
+    return new ComplexRatioRoots(
+      RatioRoots.fromRational(r.real.clone()),
+      RatioRoots.fromRational(r.imag.clone())
+    );
   }
 
   isZero(): boolean {

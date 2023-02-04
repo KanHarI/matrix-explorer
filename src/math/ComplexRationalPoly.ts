@@ -1,4 +1,5 @@
 import { ComplexRational } from "./ComplexRational";
+import { ComplexRatioRoots } from "./ComplexRatioRoots";
 
 export class ComplexRationalPoly {
   private _coefficients: Array<ComplexRational>;
@@ -146,5 +147,24 @@ export class ComplexRationalPoly {
 
   static one(): ComplexRationalPoly {
     return new ComplexRationalPoly([ComplexRational.one()]);
+  }
+
+  solveSymbolic(): Array<ComplexRatioRoots> {
+    switch (this.degree()) {
+      case -Infinity:
+        throw new Error(
+          "Cannot solve zero polynomial - solution space is infinite"
+        );
+      case 0:
+        return [];
+      case 1:
+        return [
+          ComplexRatioRoots.fromComplexRational(
+            this._coefficients[0].clone().divEq(this._coefficients[1]).negEq()
+          ),
+        ];
+      default:
+        throw new Error("Not implemented solution of degree higher than 1!");
+    }
   }
 }

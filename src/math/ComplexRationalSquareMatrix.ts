@@ -1,6 +1,10 @@
 import { ComplexRational } from "./ComplexRational";
 import { ComplexRationalPoly } from "./ComplexRationalPoly";
 import { ComplexRationalSquarePolyMatrix } from "./ComplexRationalSquarePolyMatrix";
+import { ComplexRatioRootsSquareMatrix } from "./ComplexRatioRootsSquareMatrix";
+import { ComplexRatioRoots } from "./ComplexRatioRoots";
+import { ComplexRatioRootsPolySquareMatrix } from "./ComplexRatioRootsPolySquareMatrix";
+import { ComplexRatioRootsPoly } from "./ComplexRatioRootsPoly";
 
 export class ComplexRationalSquareMatrix {
   private _entries: Array<Array<ComplexRational>>;
@@ -195,7 +199,7 @@ export class ComplexRationalSquareMatrix {
         const entry = this._entries[i][j].clone();
         if (i == j) {
           poly_matrix_entries[i].push(
-            new ComplexRationalPoly([entry, ComplexRational.one()])
+            new ComplexRationalPoly([entry, ComplexRational.one().negEq()])
           );
         } else {
           poly_matrix_entries[i].push(new ComplexRationalPoly([entry]));
@@ -205,5 +209,44 @@ export class ComplexRationalSquareMatrix {
     return new ComplexRationalSquarePolyMatrix(
       poly_matrix_entries
     ).determinant();
+  }
+
+  toComplexRationalSquarePolyMatrix(): ComplexRationalSquarePolyMatrix {
+    const poly_matrix_entries: Array<Array<ComplexRationalPoly>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      poly_matrix_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        poly_matrix_entries[i].push(
+          new ComplexRationalPoly([this._entries[i][j]])
+        );
+      }
+    }
+    return new ComplexRationalSquarePolyMatrix(poly_matrix_entries);
+  }
+
+  toComplexRatioRootSquareMatrix(): ComplexRatioRootsSquareMatrix {
+    const root_matrix_entries: Array<Array<ComplexRatioRoots>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      root_matrix_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        root_matrix_entries[i].push(
+          ComplexRatioRoots.fromComplexRational(this._entries[i][j])
+        );
+      }
+    }
+    return new ComplexRatioRootsSquareMatrix(root_matrix_entries);
+  }
+
+  toComplexRatioRootsPolySquareMatrix(): ComplexRatioRootsPolySquareMatrix {
+    const root_matrix_entries: Array<Array<ComplexRatioRootsPoly>> = [];
+    for (let i = 0; i < this._entries.length; i++) {
+      root_matrix_entries.push([]);
+      for (let j = 0; j < this._entries.length; j++) {
+        root_matrix_entries[i].push(
+          ComplexRatioRootsPoly.fromComplexRational(this._entries[i][j])
+        );
+      }
+    }
+    return new ComplexRatioRootsPolySquareMatrix(root_matrix_entries);
   }
 }

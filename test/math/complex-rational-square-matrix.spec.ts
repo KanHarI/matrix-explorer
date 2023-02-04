@@ -68,7 +68,7 @@ describe("Complex rational square matrix module tests", () => {
     expect(characteristic_polynomial).toStrictEqual(
       new ComplexRationalPoly([
         ComplexRational.fromInt(6),
-        ComplexRational.fromInt(5),
+        ComplexRational.fromInt(-5),
         ComplexRational.fromInt(1),
       ])
     );
