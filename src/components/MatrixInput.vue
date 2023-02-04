@@ -4,8 +4,8 @@
       <div v-for="j of range(order)" :key="j" class="matrix-input__cell">
         <input
           type="text"
-          :placeholder="entries[i][j]"
-          @input="update_entry(i, j, $event.target.value)"
+          :placeholder="String(entries[i][j])"
+          @input="update_entry(i, j, ($event.target as HTMLInputElement).value)"
         />
       </div>
     </div>
@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { ComplexRational } from "../math/ComplexRational";
 import { range } from "lodash";
 
 interface DataType {
@@ -32,6 +31,7 @@ export default defineComponent({
   setup() {
     return {
       range,
+      HTMLInputElement,
     };
   },
   data(): DataType {

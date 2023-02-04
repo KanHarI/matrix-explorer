@@ -9,7 +9,8 @@
     </p>
   </div>
 
-  <MatrixInput order="2" />
+  <MatrixInput :order="2" />
+  <MathjaxMatrix />
 
   <p>
     Check out
@@ -28,6 +29,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MatrixInput from "./MatrixInput.vue";
+import MathjaxMatrix from "./MathjaxMatrix.vue";
 
 interface DataType {
   count: number;
@@ -36,6 +38,7 @@ interface DataType {
 export default defineComponent({
   name: "HelloWorld",
   components: {
+    MathjaxMatrix,
     MatrixInput,
   },
   props: {
