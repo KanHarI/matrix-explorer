@@ -186,4 +186,12 @@ export class Rational {
   static fromInt(n: number): Rational {
     return new Rational(n, 1);
   }
+
+  toMathJax(): string {
+    if (this._denominator == 1) {
+      return this._numerator.toString();
+    } else {
+      return `\\frac{${this._numerator}}{${this._denominator}}`;
+    }
+  }
 }

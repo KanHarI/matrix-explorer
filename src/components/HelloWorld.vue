@@ -10,7 +10,7 @@
   </div>
 
   <MatrixInput :order="2" />
-  <MathjaxMatrix />
+  <MathjaxMatrix :matrix="matrix" />
 
   <p>
     Check out
@@ -30,6 +30,7 @@
 import { defineComponent } from "vue";
 import MatrixInput from "./MatrixInput.vue";
 import MathjaxMatrix from "./MathjaxMatrix.vue";
+import { ComplexRationalSquarePolyMatrix } from "../math/ComplexRationalSquarePolyMatrix";
 
 interface DataType {
   count: number;
@@ -51,6 +52,11 @@ export default defineComponent({
     return {
       count: 0,
     };
+  },
+  computed: {
+    matrix(): ComplexRationalSquarePolyMatrix {
+      return ComplexRationalSquarePolyMatrix.identity(3);
+    },
   },
 });
 </script>

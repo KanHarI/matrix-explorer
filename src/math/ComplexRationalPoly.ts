@@ -121,11 +121,11 @@ export class ComplexRationalPoly {
   }
 
   get coefficients(): Array<ComplexRational> {
-    return this._coefficients;
+    return this._coefficients.map((c) => c.clone());
   }
 
   evaluate(z: ComplexRational): ComplexRational {
-    let result = ComplexRational.zero();
+    const result = ComplexRational.zero();
     const acc = ComplexRational.one();
     for (let i = 0; i <= this.degree(); i++) {
       result.addEq(ComplexRational.mul(this._coefficients[i], acc));
@@ -166,5 +166,25 @@ export class ComplexRationalPoly {
       default:
         throw new Error("Not implemented solution of degree higher than 1!");
     }
+  }
+
+  toMathJax(): string {
+    let result = "";
+    for (let i = 0; i <= this.degree(); i++) {
+      if (i > 0) {
+        result += " + ";
+      }
+      if (i > 0) {
+        result += "\\left(";
+      }
+      result += `${this._coefficients[i].toMathJax()}`;
+      if (i > 0) {
+        result += "\\right)z^" + i;
+      }
+    }
+    if (this.degree() === -Infinity) {
+      return "0";
+    }
+    return result;
   }
 }

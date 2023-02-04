@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-mathjax :formula="'$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$'" />
+    <vue-mathjax :formula="formula" />
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default defineComponent({
     matrix: {
       type: ComplexRationalSquarePolyMatrix,
       required: true,
+    },
+  },
+  computed: {
+    formula(): string {
+      return this.matrix.toMathJax();
     },
   },
 });
