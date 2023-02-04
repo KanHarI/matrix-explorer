@@ -1,4 +1,5 @@
 import { Rational } from "./Rational";
+import { RatioRoots } from "./RatioRoots";
 
 export class RatioPoly {
   private _coefficients: Array<Rational>;
@@ -109,5 +110,44 @@ export class RatioPoly {
       result.mulEq(new RatioPoly([Rational.neg(root), new Rational(1, 1)]));
     }
     return result;
+  }
+
+  solve(): Array<RatioRoots> {
+    switch (this.degree()) {
+      case -Infinity:
+        throw new Error(
+          "Cannot solve zero polynomial - solution space is infinite"
+        );
+      case 0:
+        return [];
+      case 1:
+        return [
+          RatioRoots.fromRational(
+            Rational.neg(this._coefficients[0]).divEq(this._coefficients[1])
+          ),
+        ];
+      case 2:
+        const a = this._coefficients[2];
+        const b = this._coefficients[1];
+        const c = this._coefficients[0];
+        const discriminant = Rational.sub(
+          Rational.mul(b, b),
+          Rational.mul(a, c).mulEq(new Rational(4, 1))
+        );
+        const discriminant_sqrt = discriminant.sqrt();
+        const two_a = a.mulEq(new Rational(2, 1));
+        return discriminant_sqrt.map((d) => {
+          return RatioRoots.add(
+            RatioRoots.fromRational(Rational.neg(b))
+              .addEq(d)
+              .divEq(RatioRoots.fromRational(two_a)),
+            RatioRoots.fromRational(Rational.neg(b))
+              .subEq(d)
+              .divEq(RatioRoots.fromRational(two_a))
+          );
+        });
+      default:
+        throw new Error("Cannot solve polynomial of degree > 2");
+    }
   }
 }

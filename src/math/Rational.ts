@@ -1,4 +1,5 @@
 import { gcd } from "./numberTheory";
+import { RatioRoots } from "./RatioRoots";
 
 export class Rational {
   private _numerator: number;
@@ -185,6 +186,16 @@ export class Rational {
 
   static fromInt(n: number): Rational {
     return new Rational(n, 1);
+  }
+
+  sqrt(): [RatioRoots, RatioRoots] {
+    const entries: Record<number, Rational> = {};
+    const entries2: Record<number, Rational> = {};
+    const rat_part = new Rational(1, this._denominator);
+    const sqrt_part = this._numerator * this._denominator;
+    entries[sqrt_part] = rat_part;
+    entries2[sqrt_part] = Rational.neg(rat_part);
+    return [new RatioRoots(entries), new RatioRoots(entries2)];
   }
 
   toMathJax(): string {
