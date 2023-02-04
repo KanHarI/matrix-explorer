@@ -126,10 +126,9 @@ export class ComplexRationalPoly {
 
   evaluate(z: ComplexRational): ComplexRational {
     const result = ComplexRational.zero();
-    const acc = ComplexRational.one();
-    for (let i = 0; i <= this.degree(); i++) {
-      result.addEq(ComplexRational.mul(this._coefficients[i], acc));
-      acc.mulEq(z);
+    for (let i = this.degree(); i >= 0; i--) {
+      result.mulEq(z);
+      result.addEq(this._coefficients[i]);
     }
     return result;
   }

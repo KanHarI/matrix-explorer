@@ -150,4 +150,13 @@ export class RatioPoly {
         throw new Error("Cannot solve polynomial of degree > 2");
     }
   }
+
+  evaluate(x: Rational): Rational {
+    const result = Rational.zero();
+    for (let i = this.degree(); i >= 0; i--) {
+      result.mulEq(x);
+      result.addEq(this._coefficients[i]);
+    }
+    return result;
+  }
 }

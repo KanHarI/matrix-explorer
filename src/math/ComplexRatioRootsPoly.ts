@@ -98,6 +98,15 @@ export class ComplexRatioRootsPoly {
     return new ComplexRatioRootsPoly([ComplexRatioRoots.one()]);
   }
 
+  evaluate(r: ComplexRatioRoots): ComplexRatioRoots {
+    const result = ComplexRatioRoots.zero();
+    for (let i = this.degree(); i >= 0; i--) {
+      result.mulEq(r);
+      result.addEq(this._coefficients[i]);
+    }
+    return result;
+  }
+
   static fromComplexRational(r: ComplexRational): ComplexRatioRootsPoly {
     return new ComplexRatioRootsPoly([
       ComplexRatioRoots.fromComplexRational(r),
