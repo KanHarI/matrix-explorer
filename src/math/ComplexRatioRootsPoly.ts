@@ -1,6 +1,6 @@
 import { ComplexRatioRoots } from "./ComplexRatioRoots";
 import { ComplexRational } from "./ComplexRational";
-import { ComplexRationalPoly } from "./ComplexRationalPoly";
+import { Rational } from "./Rational";
 
 export class ComplexRatioRootsPoly {
   private _coefficients: Array<ComplexRatioRoots>;
@@ -111,5 +111,29 @@ export class ComplexRatioRootsPoly {
     return new ComplexRatioRootsPoly([
       ComplexRatioRoots.fromComplexRational(r),
     ]);
+  }
+
+  static fromRational(r: Rational): ComplexRatioRootsPoly {
+    return new ComplexRatioRootsPoly([ComplexRatioRoots.fromRational(r)]);
+  }
+
+  toMathJax(): string {
+    if (this.degree() == -Infinity) {
+      return "0";
+    }
+    let result = "";
+    for (let i = this.degree(); i >= 0; i--) {
+      if (i != this.degree()) {
+        result += " + ";
+      }
+      result += this._coefficients[i].toMathJax();
+      if (i > 0) {
+        result += "z";
+        if (i > 1) {
+          result += "^{" + i + "}";
+        }
+      }
+    }
+    return result;
   }
 }

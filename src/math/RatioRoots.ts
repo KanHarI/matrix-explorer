@@ -255,4 +255,24 @@ export class RatioRoots {
   static fromRational(r: Rational): RatioRoots {
     return new RatioRoots({ 1: r.clone() });
   }
+
+  toMathJax(): string {
+    if (this.isZero()) {
+      return "0";
+    }
+    const keys = Object.keys(this._coefficients).map((x) => parseInt(x));
+    const res = [];
+    for (const key of keys) {
+      if (key === 1) {
+        res.push(this._coefficients[key].toMathJax());
+      } else {
+        res.push(
+          `\\sqrt{${key}} \\cdot ${this._coefficients[key].toMathJax()}`
+        );
+      }
+    }
+    const should_parenthize = res.length > 1;
+    const result = res.join(" + ");
+    return should_parenthize ? `\\left(${result}\\right)` : result;
+  }
 }

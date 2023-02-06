@@ -139,7 +139,7 @@ export class ComplexRatioRootsSquareMatrix {
   }
 
   trace(): ComplexRatioRoots {
-    let trace = ComplexRatioRoots.zero();
+    const trace = ComplexRatioRoots.zero();
     for (let i = 0; i < this._entries.length; i++) {
       trace.addEq(this._entries[i][i].clone());
     }
@@ -167,7 +167,7 @@ export class ComplexRatioRootsSquareMatrix {
     if (this._entries.length == 1) {
       return this._entries[0][0].clone();
     }
-    let det = ComplexRatioRoots.zero();
+    const det = ComplexRatioRoots.zero();
     for (let i = 0; i < this._entries.length; i++) {
       const minor = this.minor(0, i);
       const entry = this._entries[0][i].clone();

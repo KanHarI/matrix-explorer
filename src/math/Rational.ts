@@ -185,6 +185,9 @@ export class Rational {
   }
 
   static fromInt(n: number): Rational {
+    if (!Number.isInteger(n)) {
+      throw new Error("Input must be an integer!");
+    }
     return new Rational(n, 1);
   }
 

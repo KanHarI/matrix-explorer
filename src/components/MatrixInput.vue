@@ -5,6 +5,7 @@
         <input
           type="text"
           :placeholder="String(entries[i][j])"
+          :value="entries[i][j]"
           @input="update_entry(i, j, ($event.target as HTMLInputElement).value)"
         />
       </div>
@@ -50,7 +51,27 @@ export default defineComponent({
       entries,
     };
   },
+  watch: {
+    order() {
+      this.initialize_entries();
+    },
+  },
   methods: {
+    initialize_entries() {
+      this.entries = [];
+      for (let i = 0; i < this.order; i++) {
+        if (this.entries[i] === undefined) {
+          this.entries[i] = [];
+        }
+        for (let j = 0; j < this.order; j++) {
+          if (i === j) {
+            this.entries[i][j] = 1;
+          } else {
+            this.entries[i][j] = 0;
+          }
+        }
+      }
+    },
     update_entry(i: number, j: number, value: string) {
       if (value === "") {
         this.entries[i][j] = i === j ? 1 : 0;

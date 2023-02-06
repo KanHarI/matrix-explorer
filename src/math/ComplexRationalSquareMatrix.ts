@@ -118,7 +118,7 @@ export class ComplexRationalSquareMatrix {
     for (let i = 0; i < this._entries.length; i++) {
       new_entries.push([]);
       for (let j = 0; j < this._entries.length; j++) {
-        let sum = ComplexRational.zero();
+        const sum = ComplexRational.zero();
         for (let k = 0; k < this._entries.length; k++) {
           sum.addEq(this._entries[i][k].clone().mulEq(other._entries[k][j]));
         }
@@ -142,7 +142,7 @@ export class ComplexRationalSquareMatrix {
   ): Array<ComplexRational> {
     const new_entries: Array<ComplexRational> = [];
     for (let i = 0; i < a._entries.length; i++) {
-      let sum = ComplexRational.zero();
+      const sum = ComplexRational.zero();
       for (let k = 0; k < a._entries.length; k++) {
         sum.addEq(a._entries[i][k].clone().mulEq(b[k]));
       }
@@ -152,7 +152,7 @@ export class ComplexRationalSquareMatrix {
   }
 
   trace(): ComplexRational {
-    let sum = ComplexRational.zero();
+    const sum = ComplexRational.zero();
     for (let i = 0; i < this._entries.length; i++) {
       sum.addEq(this._entries[i][i]);
     }
@@ -180,7 +180,7 @@ export class ComplexRationalSquareMatrix {
     if (this._entries.length == 1) {
       return this._entries[0][0];
     }
-    let sum = ComplexRational.zero();
+    const sum = ComplexRational.zero();
     for (let i = 0; i < this._entries.length; i++) {
       const entry = this._entries[0][i].clone();
       if (i % 2 == 1) {

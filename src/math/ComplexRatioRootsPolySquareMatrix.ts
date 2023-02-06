@@ -35,4 +35,14 @@ export class ComplexRatioRootsPolySquareMatrix {
     }
     return new ComplexRatioRootsPolySquareMatrix(entries);
   }
+
+  toMathJax(): string {
+    return (
+      "$$\\begin{pmatrix}" +
+      this._entries
+        .map((row) => row.map((entry) => entry.toMathJax()).join(" & "))
+        .join("\\\\") +
+      "\\end{pmatrix}$$"
+    );
+  }
 }

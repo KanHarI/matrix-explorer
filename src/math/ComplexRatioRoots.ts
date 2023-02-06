@@ -136,4 +136,17 @@ export class ComplexRatioRoots {
   isZero(): boolean {
     return this._real.isZero() && this._imag.isZero();
   }
+
+  toMathJax(): string {
+    if (this._real.isZero() && this._imag.isZero()) {
+      return "0";
+    }
+    if (this._imag.isZero()) {
+      return this._real.toMathJax();
+    }
+    if (this._real.isZero()) {
+      return this._imag.toMathJax() + "i";
+    }
+    return "(" + this._real.toMathJax() + " + " + this._imag.toMathJax() + "i)";
+  }
 }

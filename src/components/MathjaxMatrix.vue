@@ -6,13 +6,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { ComplexRationalSquarePolyMatrix } from "../math/ComplexRationalSquarePolyMatrix";
+import { ComplexRatioRootsPolySquareMatrix } from "../math/ComplexRatioRootsPolySquareMatrix";
 
 export default defineComponent({
   name: "MathjaxMatrix",
   props: {
     matrix: {
-      type: ComplexRationalSquarePolyMatrix,
+      type: ComplexRatioRootsPolySquareMatrix,
       required: true,
     },
   },
