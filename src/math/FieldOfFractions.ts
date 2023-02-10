@@ -3,7 +3,7 @@ import {
   UniqueFactorizationDomain,
 } from "./UniqueFactorizationDomain";
 import { Field } from "./Field";
-import {_pow, CommutativeRing, isZero} from "./CommutativeRing";
+import { _pow, CommutativeRing, isZero } from "./CommutativeRing";
 
 export function makeFieldOfFractions<
   RingT,
@@ -108,12 +108,8 @@ export function makeFieldOfFractions<
       return this;
     }
 
-    one: CommutativeRing<FofT> = new FieldOfFractions(
-      _one, _one
-    );
-    zero: CommutativeRing<FofT> = new FieldOfFractions(
-      _zero, _one
-    );
+    one: CommutativeRing<FofT> = new FieldOfFractions(_one, _one);
+    zero: CommutativeRing<FofT> = new FieldOfFractions(_zero, _one);
 
     attemptInvert():
       | { success: false }
@@ -125,10 +121,7 @@ export function makeFieldOfFractions<
       const new_denominator = this._numerator.clone();
       return {
         success: true,
-        inverse: new FieldOfFractions(
-          new_numerator as R,
-          new_denominator as R
-        ),
+        inverse: new FieldOfFractions(new_numerator as R, new_denominator as R),
       };
     }
 
