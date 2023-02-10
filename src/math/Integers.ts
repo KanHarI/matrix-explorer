@@ -16,6 +16,15 @@ export class Integer implements UniqueFactorizationDomain<_Integers> {
     this._n = n;
   }
 
+  clone(): CommutativeRing<_Integers> {
+    return new Integer(this._n);
+  }
+
+  isEq(x: CommutativeRing<_Integers>): boolean {
+    // @ts-ignore
+    return this._n === x._n;
+  }
+
   addEq(x: CommutativeRing<_Integers>): CommutativeRing<_Integers> {
     // @ts-ignore
     this._n += x._n;
@@ -46,10 +55,6 @@ export class Integer implements UniqueFactorizationDomain<_Integers> {
       return { success: true, inverse: this.clone().negEq() };
     }
     return { success: false };
-  }
-
-  clone(): CommutativeRing<_Integers> {
-    return new Integer(this._n);
   }
 
   factorize(): Array<{

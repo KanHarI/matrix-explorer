@@ -2,6 +2,7 @@ export interface CommutativeRing<T> {
   zero: CommutativeRing<T>;
   one: CommutativeRing<T>;
   clone(): CommutativeRing<T>;
+  isEq(x: CommutativeRing<T>): boolean;
   negEq: () => CommutativeRing<T>;
   addEq: (x: CommutativeRing<T>) => CommutativeRing<T>;
   mulEq: (x: CommutativeRing<T>) => CommutativeRing<T>;
@@ -45,4 +46,12 @@ export function _pow<T>(a: CommutativeRing<T>, n: number): CommutativeRing<T> {
   } else {
     return mul(a, _pow(a, n - 1));
   }
+}
+
+export function isZero<T>(a: CommutativeRing<T>): boolean {
+  return a.isEq(a.zero);
+}
+
+export function isOne<T>(a: CommutativeRing<T>): boolean {
+  return a.isEq(a.one);
 }
