@@ -5,7 +5,7 @@ import {
 import { Field } from "./Field";
 import { _pow, CommutativeRing } from "./CommutativeRing";
 
-export abstract class FieldOfFractions<
+export class FieldOfFractions<
   RingT,
   R extends UniqueFactorizationDomain<RingT>,
   FofT
